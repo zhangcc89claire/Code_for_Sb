@@ -17,7 +17,7 @@ Make sure to set the working directory to the location of the scripts and data f
 
 ### Step 1: PWAS
 
-PWAS analysis is performed to identify protein-level associations with the disease. Go around each of the 22 chromosomes. For instance, run the following command to carry out the analysis for chromosome 22:
+PWAS analysis is performed to identify protein-level associations with the disease, use the script with protein weights. Go around each of the 22 chromosomes. For instance, run the following command to carry out the analysis for chromosome 22:
 
 
 ```bash
