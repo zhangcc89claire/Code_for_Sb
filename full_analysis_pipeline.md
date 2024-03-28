@@ -11,32 +11,33 @@ Before starting with the analysis, ensure that the following software and librar
 
 ## Analysis Steps
 
+### Step 1: PWAS
 
-#Step 1: PWAS
-For the Proteome-Wide Association Study (PWAS), execute the `FUSION.assoc_test.R` script using prepared data for all the chromosome,下面我们以22号染色体为例：
-
-```bash
+For the Proteome-Wide Association Study (PWAS), execute the `FUSION.assoc_test.R` script using prepared data for all the chromosomes. Below, we provide an example using chromosome 22:
+  
+  ```bash
 Rscript FUSION.assoc_test.R \
-  --sumstats gwas.sumstats \
-  --weights ./WEIGHTS/protein.pos \
-  --weights_dir ./WEIGHTS/ \
-  --ref_ld_chr ./LDREF/1000G.EUR. \
-  --chr 22 \
-  --out PGC2.SCZ.chr.dat
-
-#Step 2: PWAS
-For the Transcriptome-Wide Association Study (TWAS), use the same script with RNA position weights.
-
-Rscript FUSION.assoc_test.R \
-  --sumstats gwas.sumstats \
-  --weights ./WEIGHTS/RNA.pos \
-  --weights_dir ./WEIGHTS/ \
-  --ref_ld_chr ./LDREF/1000G.EUR. \
-  --chr 22 \
-  --out PGC2.SCZ.chr.dat
+--sumstats gwas.sumstats \
+--weights ./WEIGHTS/gene.pos \
+--weights_dir ./WEIGHTS/ \
+--ref_ld_chr ./LDREF/1000G.EUR. \
+--chr 22 \
+--out PGC2.SCZ.chr.dat
 
 
-Step 3: CELLEX Analysis
+### Step 2: TWAS
+For the Transcriptome-Wide Association Study (TWAS), use the same script with RNA position weights. Below, we provide an example using chromosome 22:
+  
+  Rscript FUSION.assoc_test.R \
+--sumstats gwas.sumstats \
+--weights ./WEIGHTS/gene.pos \
+--weights_dir ./WEIGHTS/ \
+--ref_ld_chr ./LDREF/1000G.EUR. \
+--chr 22 \
+--out PGC2.SCZ.chr.dat
+
+
+##Step 3: CELLEX Analysis
 To perform the CELLEX analysis for cell-type specific expression insights, use the following Python code.
 
 import numpy as np
@@ -54,7 +55,7 @@ eso.compute(verbose=True)
 # Saving results
 eso.results["esmu"].to_csv("mydataset.esmu.csv.gz")
 
-Step 4: Mendelian Randomization (MR) Analysis
+##Step 4: Mendelian Randomization (MR) Analysis
 Finally, for the Mendelian Randomization analysis, use the TwoSampleMR package in R to explore the causal relationship.
 
 # Instrument selection
