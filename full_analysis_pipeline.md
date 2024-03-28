@@ -15,7 +15,7 @@ Before starting with the analysis, ensure that the following software and librar
 
 For the Proteome-Wide Association Study (PWAS), execute the `FUSION.assoc_test.R` script using prepared data for all the chromosomes. Below, we provide an example using chromosome 22:
   
-\```bash
+```bash
 Rscript FUSION.assoc_test.R \
   --sumstats gwas.sumstats \
   --weights ./WEIGHTS/gene.pos \
@@ -23,14 +23,15 @@ Rscript FUSION.assoc_test.R \
   --ref_ld_chr ./LDREF/1000G.EUR. \
   --chr 22 \
   --out PGC2.SCZ.chr22.dat
-\```
+
+```
 
 
 ### Step 2: TWAS
 
 For the Transcriptome-Wide Association Study (TWAS), use the same script with RNA position weights. Below, we provide an example using chromosome 22:
 
-\```bash
+```bash
 Rscript FUSION.assoc_test.R \
   --sumstats gwas.sumstats \
   --weights ./WEIGHTS/RNA.pos \
@@ -38,25 +39,25 @@ Rscript FUSION.assoc_test.R \
   --ref_ld_chr ./LDREF/1000G.EUR. \
   --chr 22 \
   --out PGC2.SCZ.chr22.dat
-\```
+```
 
 ### Step 3: MR
 Finally, for the Mendelian Randomization analysis, use the TwoSampleMR package in R to explore the causal relationship.
+```bash
 
 exposure_dat <- read_excel("genetic_instrument_protein.xlsx")
 outcome_dat <- read_xlsx("outcome_SCZ or BDI.xlsx")
 dat <- harmonise_data(exposure_dat, outcome_dat)
 res <- mr(dat)
-
+```
 ### Step 4: CELLEX
 
 To perform the CELLEX analysis for cell-type specific expression insights, use the following Python code.
+```bash
 
 import numpy as np
 import pandas as pd
 import cellex
-
-
 
 #### Loading data
 data = pd.read_csv("./data.csv", index_col=0)
@@ -68,3 +69,4 @@ eso.compute(verbose=True)
 
 # Saving results
 eso.results["esmu"].to_csv("mydataset.esmu.csv.gz")
+```
