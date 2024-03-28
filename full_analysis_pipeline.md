@@ -15,29 +15,31 @@ Before starting with the analysis, ensure that the following software and librar
 
 For the Proteome-Wide Association Study (PWAS), execute the `FUSION.assoc_test.R` script using prepared data for all the chromosomes. Below, we provide an example using chromosome 22:
   
-```bash
+\```bash
 Rscript FUSION.assoc_test.R \
   --sumstats gwas.sumstats \
-  --weights ./WEIGHTS/gene.pos \
+  --weights ./WEIGHTS/gene.protein.pos \
   --weights_dir ./WEIGHTS/ \
   --ref_ld_chr ./LDREF/1000G.EUR. \
   --chr 22 \
   --out PGC2.SCZ.chr22.dat
-
+\```
 
 
 ### Step 2: TWAS
 
 For the Transcriptome-Wide Association Study (TWAS), use the same script with RNA position weights. Below, we provide an example using chromosome 22:
 
-Rscript FUSION.assoc_test.R \
---sumstats gwas.sumstats \
---weights ./WEIGHTS/gene.pos \
---weights_dir ./WEIGHTS/ \
---ref_ld_chr ./LDREF/1000G.EUR. \
---chr 22 \
---out PGC2.SCZ.chr.dat
+\```bash
 
+Rscript FUSION.assoc_test.R \
+  --sumstats gwas.sumstats \
+  --weights ./WEIGHTS/gene.RNA.pos \
+  --weights_dir ./WEIGHTS/ \
+  --ref_ld_chr ./LDREF/1000G.EUR. \
+  --chr 22 \
+  --out PGC2.SCZ.chr.dat
+\```
 
 ### Step 3: MR
 Finally, for the Mendelian Randomization analysis, use the TwoSampleMR package in R to explore the causal relationship.
