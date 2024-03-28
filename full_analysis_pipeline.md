@@ -11,9 +11,9 @@ Before starting with the analysis, ensure that the following software and librar
 
 ## Analysis Steps
 
-### Step 1: PWAS
 
-For the Proteome-Wide Association Study (PWAS), execute the `FUSION.assoc_test.R` script using prepared data for chromosome 22.
+#Step 1: PWAS
+For the Proteome-Wide Association Study (PWAS), execute the `FUSION.assoc_test.R` script using prepared data for all the chromosome,下面我们以22号染色体为例：
 
 ```bash
 Rscript FUSION.assoc_test.R \
@@ -24,7 +24,7 @@ Rscript FUSION.assoc_test.R \
   --chr 22 \
   --out PGC2.SCZ.chr.dat
 
-### Step 2: PWAS
+#Step 2: PWAS
 For the Transcriptome-Wide Association Study (TWAS), use the same script with RNA position weights.
 
 Rscript FUSION.assoc_test.R \
@@ -57,16 +57,16 @@ eso.results["esmu"].to_csv("mydataset.esmu.csv.gz")
 Step 4: Mendelian Randomization (MR) Analysis
 Finally, for the Mendelian Randomization analysis, use the TwoSampleMR package in R to explore the causal relationship.
 
-library(TwoSampleMR)
-
 # Instrument selection
-exposure_dat <- extract_instruments("ieu-a-2")
+exposure_dat <- read_excel("genetic_instrument_protein.xlsx")
 
 # Effect of instruments on outcome
-outcome_dat <- extract_outcome_data(snps=exposure_dat$SNP, outcomes = "ieu-a-7")
+outcome_dat <- read_xlsx("outcome_SCZ or BDI.xlsx")
 
 # Data harmonisation
 dat <- harmonise_data(exposure_dat, outcome_dat)
 
 # MR analysis
 res <- mr(dat)
+
+
