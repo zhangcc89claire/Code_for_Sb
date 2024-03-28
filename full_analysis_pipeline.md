@@ -4,21 +4,25 @@ This repository contains the analysis code for the paper "Unraveling NEK4 as a P
 
 ## Prerequisites
 
-Before starting with the analysis, ensure that the following software and libraries are installed and configured on your system:
+Before running the pipeline, ensure that the following dependencies are installed:
 
-- R and the following R packages: `FUSION`, `TwoSampleMR`
-- Python and the following Python packages: `numpy`, `pandas`, `cellex`
+- **R**: A programming language and environment for statistical computing and graphics.
+  - R packages required: `FUSION`, `TwoSampleMR`, `readxl`
+- **Python**: An interpreted, high-level and general-purpose programming language.
+  - Python packages required: `numpy`, `pandas`, `cellex`
+
+Make sure to set the working directory to the location of the scripts and data files.
 
 ## Analysis Steps
 
 ### Step 1: PWAS
 
-For the Proteome-Wide Association Study (PWAS), execute the `FUSION.assoc_test.R` script using prepared data for all the chromosomes. Below, we provide an example using chromosome 22:
-  
+PWAS analysis is performed to identify protein-level associations with the disease. To execute the analysis for chromosome 22, use the following command:
+
 ```bash
 Rscript FUSION.assoc_test.R \
   --sumstats gwas.sumstats \
-  --weights ./WEIGHTS/gene.pos \
+  --weights ./WEIGHTS/gene.protein.pos \
   --weights_dir ./WEIGHTS/ \
   --ref_ld_chr ./LDREF/1000G.EUR. \
   --chr 22 \
@@ -34,7 +38,7 @@ For the Transcriptome-Wide Association Study (TWAS), use the same script with RN
 ```bash
 Rscript FUSION.assoc_test.R \
   --sumstats gwas.sumstats \
-  --weights ./WEIGHTS/RNA.pos \
+  --weights ./WEIGHTS/gene.RNA.pos \
   --weights_dir ./WEIGHTS/ \
   --ref_ld_chr ./LDREF/1000G.EUR. \
   --chr 22 \
@@ -42,17 +46,23 @@ Rscript FUSION.assoc_test.R \
 ```
 
 ### Step 3: MR
-Finally, for the Mendelian Randomization analysis, use the TwoSampleMR package in R to explore the causal relationship.
+MR analysis is used to investigate the causal effects of the identified proteins or genes on the disease outcome. Run the following R commands for MR analysis:
+
 ```bash
+
+library(readxl)
+library(TwoSampleMR)
 
 exposure_dat <- read_excel("genetic_instrument_protein.xlsx")
 outcome_dat <- read_xlsx("outcome_SCZ or BDI.xlsx")
 dat <- harmonise_data(exposure_dat, outcome_dat)
 res <- mr(dat)
+
 ```
 ### Step 4: CELLEX
 
-To perform the CELLEX analysis for cell-type specific expression insights, use the following Python code.
+CELLEX analysis is used to compute cell-type specific expression metrics. Run the following Python code to perform CELLEX analysis:
+
 ```bash
 
 import numpy as np
