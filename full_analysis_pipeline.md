@@ -17,7 +17,7 @@ Make sure to set the working directory to the location of the scripts and data f
 
 ### Step 1: PWAS
 
-PWAS analysis is performed to identify protein-level associations with the disease, use the script with protein weights.The functional reference data are loaded using the ./WEIGHTS/gene.pos which points to the individual weight files. Go around each of the 22 chromosomes. For instance, run the following command to carry out the analysis for chromosome 22:
+The PWAS analysis is conducted to associations at the protein level with the disease by utilizing a script that incorporates protein weights. This process involves loading functional reference data along with individual weight files for each protein. Go around each of the 22 chromosomes. For instance, run the following command to carry out the analysis for chromosome 22:
 
 
 ```bash
@@ -34,7 +34,7 @@ Rscript FUSION.assoc_test.R \
 
 ### Step 2: TWAS
 
-For the Transcriptome-Wide Association Study (TWAS), use the same script with RNA position weights. Below, we provide an example using chromosome 22:
+For the Transcriptome-Wide Association Study (TWAS), use the same script with RNA weights. Below, we provide an example using chromosome 22:
 
 ```bash
 Rscript FUSION.assoc_test.R \
