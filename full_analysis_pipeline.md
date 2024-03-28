@@ -18,7 +18,7 @@ For the Proteome-Wide Association Study (PWAS), execute the `FUSION.assoc_test.R
 \```bash
 Rscript FUSION.assoc_test.R \
   --sumstats gwas.sumstats \
-  --weights ./WEIGHTS/gene.protein.pos \
+  --weights ./WEIGHTS/gene.pos \
   --weights_dir ./WEIGHTS/ \
   --ref_ld_chr ./LDREF/1000G.EUR. \
   --chr 22 \
@@ -31,14 +31,13 @@ Rscript FUSION.assoc_test.R \
 For the Transcriptome-Wide Association Study (TWAS), use the same script with RNA position weights. Below, we provide an example using chromosome 22:
 
 \```bash
-
 Rscript FUSION.assoc_test.R \
   --sumstats gwas.sumstats \
-  --weights ./WEIGHTS/gene.RNA.pos \
+  --weights ./WEIGHTS/RNA.pos \
   --weights_dir ./WEIGHTS/ \
   --ref_ld_chr ./LDREF/1000G.EUR. \
   --chr 22 \
-  --out PGC2.SCZ.chr.dat
+  --out PGC2.SCZ.chr22.dat
 \```
 
 ### Step 3: MR
