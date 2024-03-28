@@ -1,4 +1,4 @@
-# Unraveling NEK4 as a Potential Drug Target in Schizophrenia and Bipolar I Disorder: Analysis Pipeline
+# Unraveling NEK4 as a Potential Drug Target in Schizophrenia and Bipolar I Disorder A Proteomic and Genomic Approach: Analysis Pipeline
 
 This repository contains the analysis code for the paper "Unraveling NEK4 as a Potential Drug Target in Schizophrenia and Bipolar I Disorder: A Proteomic and Genomic Approach". The comprehensive analysis pipeline encompasses methodologies from Proteome-Wide Association Studies (PWAS), Transcriptome-Wide Association Studies (TWAS), Mendelian Randomization (MR) and CELLEX analysis, providing a robust approach to understanding the genetic underpinnings and potential therapeutic targets for Schizophrenia and Bipolar I Disorder.
 
