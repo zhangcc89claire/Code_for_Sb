@@ -17,12 +17,12 @@ Make sure to set the working directory to the location of the scripts and data f
 
 ### Step 1: PWAS
 
-PWAS analysis is performed to identify protein-level associations with the disease. To execute the analysis for chromosome 22, use the following command:
+PWAS analysis is performed to identify protein-level associations with the disease. Loop through all 22 chromosomes. To execute the analysis for chromosome 22, use the following command:
 
 ```bash
 Rscript FUSION.assoc_test.R \
   --sumstats gwas.sumstats \
-  --weights ./WEIGHTS/gene.protein.pos \
+  --weights ./WEIGHTS/gene.pos \
   --weights_dir ./WEIGHTS/ \
   --ref_ld_chr ./LDREF/1000G.EUR. \
   --chr 22 \
@@ -38,7 +38,7 @@ For the Transcriptome-Wide Association Study (TWAS), use the same script with RN
 ```bash
 Rscript FUSION.assoc_test.R \
   --sumstats gwas.sumstats \
-  --weights ./WEIGHTS/gene.RNA.pos \
+  --weights ./WEIGHTS/gene.pos \
   --weights_dir ./WEIGHTS/ \
   --ref_ld_chr ./LDREF/1000G.EUR. \
   --chr 22 \
@@ -52,10 +52,12 @@ MR analysis is used to investigate the causal effects of the identified proteins
 
 library(readxl)
 library(TwoSampleMR)
-
-exposure_dat <- read_excel("genetic_instrument_protein.xlsx")
-outcome_dat <- read_xlsx("outcome_SCZ or BDI.xlsx")
-dat <- harmonise_data(exposure_dat, outcome_dat)
+# Loading pqtl data 
+pQTL <- read_excel("genetic_instrument_protein.xlsx")
+# Outcome SCZ or BDI
+Disease <- read_xlsx("outcome_SCZ or BDI.xlsx")
+# MR 
+dat <- harmonise_data(pQTL, Disease)
 res <- mr(dat)
 
 ```
@@ -69,7 +71,7 @@ import numpy as np
 import pandas as pd
 import cellex
 
-#### Loading data
+# Loading data
 data = pd.read_csv("./data.csv", index_col=0)
 metadata = pd.read_csv("./metadata.csv", index_col=0)
 
