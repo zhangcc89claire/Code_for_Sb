@@ -27,7 +27,7 @@ Rscript FUSION.assoc_test.R \
   --weights_dir ./WEIGHTS/ \
   --ref_ld_chr ./LDREF/1000G.EUR. \
   --chr 22 \
-  --out PGC.SCZ.chr22.dat
+  --out PGC3.SCZ.chr22.dat
 
 ```
 
@@ -43,7 +43,7 @@ Rscript FUSION.assoc_test.R \
   --weights_dir ./WEIGHTS/ \
   --ref_ld_chr ./LDREF/1000G.EUR. \
   --chr 22 \
-  --out PGC.SCZ.chr22.dat
+  --out PGC3.SCZ.chr22.dat
 ```
 
 ### Step 3: MR
